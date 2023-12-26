@@ -43,7 +43,7 @@ async function main() {
         console.log(`example: ${process.argv[1]} "march collection"  QmZJfZWExd98MvCbi2YgREVT84b2bC7CuvquX7U9qQLi4j 13325829`);
         process.exit(-1);
     }
-    if (process.argv.length > BOUNDARY) {
+    if (process.argv.length >= BOUNDARY) {
         console.log(addMetadata(process.argv[2],process.argv[3], process.argv[4]));
     }
 
