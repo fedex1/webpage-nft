@@ -17,11 +17,16 @@ let attributesList = {};
 let counter=1;
 
 const addMetadata = (prefix,_cid, note1) => {
+const format2 = new Intl.NumberFormat("en-US", {
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
+              });
+
     let dateTime = Date.now();
     let tempMetadata = {
         name: `${prefix} #${counter}`,
         // description: `${namePrefix} #${counter} ${new Date(dateTime)}`,
-        description: `${prefix} #${counter} published ${new Date(dateTime)} notes: ${note1}`,
+        description: `${prefix} #${counter} published ${new Date(dateTime)} notes: ${format2.format(note1)} bytes`,
         image: `ipfs://${_cid}`,
         // dna: sha1(_cid),
         date: dateTime,
