@@ -19,11 +19,14 @@ async function main() {
 
   const webNft = await WebNft.deploy(process.env.OWNER_ADDRESS);
   // const webNft = await WebNft.deploy(process.env.PRIVATE_KEY);
-  console.log(`web nft step 2:${webNft}`);
+  // console.log(`web nft step 2:${JSON.stringify(webNft,"",3)}`);
+  console.log(`web nft step 2:${JSON.stringify(webNft)}`);
 
   await webNft.deployed();
 
-  console.log("web nft deployed to:", webNft.address);
+  console.log(`web nft contract deployed to: ${webNft.address}`);
+  const owner = await webNft.owner();
+  console.log(`web nft contract owner: ${owner}`);
 
   const html = await fs.readFileSync(
     path.join(__dirname, "..", "assets", "index.html")
@@ -57,18 +60,20 @@ const storage = new nft.NFTStorage({ token: process.env.NFT_STORAGE_KEY});
 
   const metadataCid = await storage.storeBlob(new nft.File([blob], "metadata.json"));
   console.log(`QQQ: metadataCid: ${metadataCid}`);
-
+/**/
   const txn = await webNft.functions.safeMint(
-    // "0xb05e879CA443eaDce5d2d7D5B256cb8624a46FbA",
+    //  "0xb05e879CA443eaDce5d2d7D5B256cb8624a46FbA",
     // webNft.address,
-    process.env.OWNER_ADDRESS,
-
+    // process.env.OWNER_ADDRESS,
+    // undefined,
+    owner,
     // `https://${metadataCid}.ipfs.w3s.link/metadata.json`
     `ipfs://${metadataCid}/metadata.json`
   );
 
   await txn.wait();
   console.log("NFT minted!");
+/**/
 }
 
 main()
