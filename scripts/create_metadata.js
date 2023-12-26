@@ -16,12 +16,12 @@ const namePrefix = 'March Collection';
 let attributesList = {};
 let counter=1;
 
-const addMetadata = (prefix,_cid) => {
+const addMetadata = (prefix,_cid, note1) => {
     let dateTime = Date.now();
     let tempMetadata = {
         name: `${prefix} #${counter}`,
         // description: `${namePrefix} #${counter} ${new Date(dateTime)}`,
-        description: `${prefix} #${counter} ${new Date(dateTime)}`,
+        description: `${prefix} #${counter} published ${new Date(dateTime)} notes: ${note1}`,
         image: `ipfs://${_cid}`,
         // dna: sha1(_cid),
         date: dateTime,
@@ -35,12 +35,13 @@ const addMetadata = (prefix,_cid) => {
 
 async function main() {
     console.log(JSON.stringify(process.argv));
-    if (process.argv.length < 3) {
+    if (process.argv.length < 4) {
         console.log(JSON.stringify(process.argv));
+        console.log(`usage: ${process.argv[1]} <prefix> <cid> <size>`);
         process.exit(-1);
     }
     if (process.argv.length > 4) {
-        console.log(addMetadata(process.argv[2],process.argv[3]));
+        console.log(addMetadata(process.argv[2],process.argv[3], process.argv[4]));
     }
 
     
