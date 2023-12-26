@@ -35,12 +35,15 @@ const addMetadata = (prefix,_cid, note1) => {
 
 async function main() {
     console.log(JSON.stringify(process.argv));
-    if (process.argv.length < 4) {
-        console.log(JSON.stringify(process.argv));
+    console.log(`length: ${process.argv.length}`);
+    const BOUNDARY=5;
+    if (process.argv.length < BOUNDARY) {
+        // console.log(JSON.stringify(process.argv));
         console.log(`usage: ${process.argv[1]} <prefix> <cid> <size>`);
+        console.log(`example: ${process.argv[1]} "march collection"  QmZJfZWExd98MvCbi2YgREVT84b2bC7CuvquX7U9qQLi4j 13325829`);
         process.exit(-1);
     }
-    if (process.argv.length > 4) {
+    if (process.argv.length > BOUNDARY) {
         console.log(addMetadata(process.argv[2],process.argv[3], process.argv[4]));
     }
 
