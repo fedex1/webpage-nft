@@ -66,7 +66,9 @@ const storage = new nft.NFTStorage({ token: process.env.NFT_STORAGE_KEY});
     // webNft.address,
     // process.env.OWNER_ADDRESS,
     // undefined,
-    owner,
+    // owner,
+        // "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        process.env.OWNER_ADDRESS,
     // `https://${metadataCid}.ipfs.w3s.link/metadata.json`
     `ipfs://${metadataCid}/metadata.json`
   );
